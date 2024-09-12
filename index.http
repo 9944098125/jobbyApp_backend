@@ -1,0 +1,88 @@
+##########REGISTER
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name":"Akella Ravi Kiran",
+  "email":"ravi@yopmail.com",
+  "password":"Srinivas@8",
+  "isEmployer":false,
+  "profilePicture":"https://res-console.cloudinary.com/dakda5ni3/thumbnails/v1/image/upload/v1717485958/anlxZ2VpZndxa3RseXprZ3ZyN24=/as_is",
+  "countryCode":"+91",
+  "phone":"80767433212",
+  "address":"11-220, venkat nagar, Indrapalem, Kakinada, Andhra Pradesh, - 533006"
+}
+
+######### LOGIN
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "emailOrPhone":"9177629841",
+  "password":"Srinivas@8"
+}
+
+########### CREATE JOB
+POST http://localhost:5000/api/jobs/createJob
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NWNkNWFiYTliZjcyYTA2M2M4OTMiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MjI2NzE1OTR9.AJix3HujFZTwmAeNXo-ffGoveKYPrPRi0q5UaXyv42Y
+
+{
+  "role":"React Developer",
+  "location":"Banglore, 66af212d2bbb209f920fea66Karnataka, India.",
+  "skills":["ReactJs", "NodeJs", "MongoDb", "ExpressJs", "MySql"],
+  "experience":"2-5 years",
+  "companyName":"Infosys Private Limited",
+  "basicQualifications":"B.Tech CSE or similar degree.",
+  "aboutTheCompany":"Infosys is a web and mobile app development company, dedicated to delivering software solutions that meet business needs. We offer complete end-to-end product development or can integrate with your existing product team.",
+  "aboutTheJob":"We are looking for React and Node developers who are interested in experimentation and challenging the convention for our projects.",
+  "userId":"66a65cd5aba9bf72a063c893",
+  "salary":"27,000/- to 45,000/-"
+}
+
+######## GET JOBS
+GET http://localhost:5000/api/jobs/getJobs/66adf005dae0ac2bdd914701
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmFkZjAwNWRhZTBhYzJiZGQ5MTQ3MDEiLCJpc0VtcGxveWVyIjpmYWxzZSwiaWF0IjoxNzIyNjgxNDYyfQ.Fz32mk0mP_2iFRaJgFrQDeX1iIIN8aGfhospiM4rMsc
+
+
+######### UPDATE JOB BY EMPLOYER
+PATCH http://localhost:5000/api/jobs/update/66ade253b140068217faa27b
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NWNkNWFiYTliZjcyYTA2M2M4OTMiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MjI2NzE1OTR9.AJix3HujFZTwmAeNXo-ffGoveKYPrPRi0q5UaXyv42Y
+
+{
+  "role":"Backend Developer 2",
+  "location":"Banglore, Karnataka, India.",
+  "skills":["NodeJS", "Python", "Java"],
+  "experience":"2-4 years",
+  "companyName":"Appening Infotech",
+  "basicQualifications":"B.Tech CSE or similar degree.",
+  "aboutTheCompany":"Appening is a web and mobile app development company, dedicated to delivering software solutions that meet business needs. We offer complete end-to-end product development or can integrate with your existing product team.",
+  "aboutTheJob":"We are looking for NodeJs developers who are interested in experimentation and challenging the convention for our projects.",
+  "userId":"66a65cd5aba9bf72a063c893",
+  "salary":"27,000/- to 45,000/-"
+}
+
+###### APPLYING FOR A JOB
+PATCH http://localhost:5000/api/auth/apply/66af4c1bfe80406877bc70b1/66a66b044cfcb2ca8735ba7d
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NmIwNDRjZmNiMmNhODczNWJhN2QiLCJpc0VtcGxveWVyIjpmYWxzZSwiaWF0IjoxNzIyNjgyNjIwfQ.43aEq7vZRe1jpZpMQAjuDx7AzvEwY_VmfLg6n5mRyGM
+
+########## DELETE THE JOB
+DELETE http://localhost:5000/api/jobs/delete/66ade253b140068217faa27b
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NWNkNWFiYTliZjcyYTA2M2M4OTMiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MjI2NzU2ODR9.FJv6R2BvZop4PEvzw69mjR_uiaSdiuIEDAcQs3W63rE
+
+######## GET EMPLOYER JOBS
+GET http://localhost:5000/api/jobs/getJobs/66a65cd5aba9bf72a063c893?employerId=66a65cd5aba9bf72a063c893
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NWNkNWFiYTliZjcyYTA2M2M4OTMiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MjIxODI5NDJ9.wY67GUbdi6h90aKw1Ksh6pI6uR1rZPWiscoAATitj4k
+
+######## generate job description
+POST http://localhost:5000/api/jobs/generate-job-description
+Content-Type: application/json
+
+{
+  "jobTitle":"MERN stack Developer with 2 years experience"
+}
