@@ -1,5 +1,5 @@
 ##########REGISTER
-POST http://localhost:5000/api/auth/register
+POST https://jobbyapp-backend.onrender.com/api/auth/register
 Content-Type: application/json
 
 {
@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ######### LOGIN
-POST http://localhost:5000/api/auth/login
+POST https://jobbyapp-backend.onrender.com/api/auth/login
 Content-Type: application/json
 
 {
@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 
 ########### CREATE JOB
-POST http://localhost:5000/api/jobs/createJob
+POST https://jobbyapp-backend.onrender.com/api/jobs/createJob
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NWNkNWFiYTliZjcyYTA2M2M4OTMiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MjI2NzE1OTR9.AJix3HujFZTwmAeNXo-ffGoveKYPrPRi0q5UaXyv42Y
 
@@ -41,13 +41,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2N
 }
 
 ######## GET JOBS
-GET http://localhost:5000/api/jobs/getJobs/66adf005dae0ac2bdd914701
+GET https://jobbyapp-backend.onrender.com/api/jobs/getJobs/66adf005dae0ac2bdd914701
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmFkZjAwNWRhZTBhYzJiZGQ5MTQ3MDEiLCJpc0VtcGxveWVyIjpmYWxzZSwiaWF0IjoxNzIyNjgxNDYyfQ.Fz32mk0mP_2iFRaJgFrQDeX1iIIN8aGfhospiM4rMsc
 
 
 ######### UPDATE JOB BY EMPLOYER
-PATCH http://localhost:5000/api/jobs/update/66ade253b140068217faa27b
+PATCH https://jobbyapp-backend.onrender.com/api/jobs/update/66ade253b140068217faa27b
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NWNkNWFiYTliZjcyYTA2M2M4OTMiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MjI2NzE1OTR9.AJix3HujFZTwmAeNXo-ffGoveKYPrPRi0q5UaXyv42Y
 
@@ -65,22 +65,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2N
 }
 
 ###### APPLYING FOR A JOB
-PATCH http://localhost:5000/api/auth/apply/66af4c1bfe80406877bc70b1/66a66b044cfcb2ca8735ba7d
+PATCH https://jobbyapp-backend.onrender.com/api/auth/apply/66af4c1bfe80406877bc70b1/66a66b044cfcb2ca8735ba7d
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NmIwNDRjZmNiMmNhODczNWJhN2QiLCJpc0VtcGxveWVyIjpmYWxzZSwiaWF0IjoxNzIyNjgyNjIwfQ.43aEq7vZRe1jpZpMQAjuDx7AzvEwY_VmfLg6n5mRyGM
 
 ########## DELETE THE JOB
-DELETE http://localhost:5000/api/jobs/delete/66ade253b140068217faa27b
+DELETE https://jobbyapp-backend.onrender.com/api/jobs/delete/66ade253b140068217faa27b
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NWNkNWFiYTliZjcyYTA2M2M4OTMiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MjI2NzU2ODR9.FJv6R2BvZop4PEvzw69mjR_uiaSdiuIEDAcQs3W63rE
 
 ######## GET EMPLOYER JOBS
-GET http://localhost:5000/api/jobs/getJobs/66a65cd5aba9bf72a063c893?employerId=66a65cd5aba9bf72a063c893
+GET https://jobbyapp-backend.onrender.com/api/jobs/getJobs/66a65cd5aba9bf72a063c893?employerId=66a65cd5aba9bf72a063c893
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NWNkNWFiYTliZjcyYTA2M2M4OTMiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MjIxODI5NDJ9.wY67GUbdi6h90aKw1Ksh6pI6uR1rZPWiscoAATitj4k
 
 ######## generate job description
-POST http://localhost:5000/api/jobs/generate-job-description
+POST https://jobbyapp-backend.onrender.com/api/jobs/generate-job-description
 Content-Type: application/json
 
 {
