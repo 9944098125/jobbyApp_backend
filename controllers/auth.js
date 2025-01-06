@@ -141,4 +141,86 @@ const userAppliedForAJob = async (req, res, next) => {
 	}
 };
 
-module.exports = { register, uploadResume, login, userAppliedForAJob };
+const jobsAppliedByUser = async (req, res, next) => {
+	try {
+		const { userId } = req.params;
+
+		if (!userId) {
+			res.status(403).json({
+				message: "User ID must exist for fetching jobs applied by a user",
+			});
+		}
+
+		const jobs = await Job.find({ userId: userId });
+		const user = await User.findOne({ _id: userId });
+		res.status(200).json({
+			message: `Fetched jobs applied by ${user?.name}`,
+			jobs: jobs,
+		});
+	} catch (err) {
+		next(err);
+	}
+};
+
+const getProfile = async (req, res, next) => {
+	try {
+		const { userId } = req.params;
+		if (!userId) {
+			return res.status(404).json({
+				message: "Please provide userId to fetch profile",
+			});
+		}
+		const user = await User.findOne({ _id: userId });
+
+		res.status(200).json({
+			message: "Profile fetched Successfully",
+			user: user,
+		});
+	} catch (err) {
+		next(err);
+	}
+};
+
+export const updatePassword = async (req, res, next) => {
+	try {
+		const { userId } = req.params;
+		const { oldPassword, newPassword } = req.body;
+		const user = await User.findById({ _id: userId });
+		if (!user) {
+			res.status(404).json({
+				message: `User with id ${userId} does not exist 🚫`,
+			});
+			return;
+		}
+		const isPasswordCorrect = bcryptJs.compareSync(oldPassword, user.password);
+		if (!isPasswordCorrect) {
+			res.status(400).json({
+				message: `Incorrect old password! Please try again... 😒`,
+			});
+			return;
+		}
+		const saltRounds = bcryptJs.genSaltSync(12);
+		const hashedPassword = bcryptJs.hashSync(newPassword, saltRounds);
+		await User.findByIdAndUpdate(
+			{ _id: userId },
+			{
+				password: hashedPassword,
+			}
+		);
+		res.status(200).json({
+			message: `Hola, ${user?.name} updated your password successfully 🤩`,
+		});
+	} catch (err) {
+		next(err);
+	}
+};
+
+module.exports = {
+	register,
+	uploadResume,
+	login,
+	userAppliedForAJob,
+	jobsAppliedByUser,
+	getProfile,
+	updatePassword,
+};
