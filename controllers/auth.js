@@ -181,7 +181,7 @@ const getProfile = async (req, res, next) => {
 	}
 };
 
-export const updatePassword = async (req, res, next) => {
+const updatePassword = async (req, res, next) => {
 	try {
 		const { userId } = req.params;
 		const { oldPassword, newPassword } = req.body;
