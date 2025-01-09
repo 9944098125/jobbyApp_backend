@@ -3,8 +3,16 @@ const mongoose = require("mongoose");
 const feedSchema = mongoose.Schema(
 	{
 		owner: {
-			type: mongoose.Schema.Types.ObjectId,
-			required: true,
+			userId: {
+				type: mongoose.Schema.Types.ObjectId,
+				required: true,
+			},
+			profilePicture: {
+				type: String,
+			},
+			name: {
+				type: String,
+			},
 		},
 		title: {
 			type: String,

@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const connectDB = require("./helpers/db");
 const authRoute = require("./routes/auth");
 const jobsRoute = require("./routes/job");
+const feedsRoute = require("./routes/feed");
 
 const app = express();
 // some middleware functionalities
@@ -18,6 +19,8 @@ app.use(bodyParser.json());
 app.use("/api/auth", authRoute);
 
 app.use("/api/jobs", jobsRoute);
+
+app.use("/api/feed", feedsRoute);
 
 app.use((err, req, res, next) => {
 	const errMessage = err.message || "Something went wrong !";
