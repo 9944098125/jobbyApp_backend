@@ -151,10 +151,38 @@ const generateJobDescription = async (req, res, next) => {
 	}
 };
 
+const getApplicantsForEmployerJobs = async (req, res, next) => {
+	try {
+		const { employerId } = req.params;
+
+		// Find jobs created by the employer
+		const jobs = await Job.find({ userId: employerId }).populate({
+			path: "appliedUser",
+			select: "name email profilePicture countryCode phone resume",
+		});
+
+		// Extract job information and applicants
+		const jobApplicants = jobs.map((job) => ({
+			jobId: job._id,
+			role: job.role,
+			location: job.location,
+			applicants: job.appliedUser, // Users who applied for this job
+		}));
+
+		res.status(200).json({
+			message: "Applicants fetched successfully",
+			jobApplicants,
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+
 module.exports = {
 	createJob,
 	getJobs,
 	updateJob,
 	deleteJob,
 	generateJobDescription,
+	getApplicantsForEmployerJobs,
 };
