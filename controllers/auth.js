@@ -74,13 +74,13 @@ const login = async (req, res, next) => {
 		const isEmail = /^\S+@\S+\.\S+$/.test(emailOrPhone);
 
 		const query = isEmail ? { email: emailOrPhone } : { phone: emailOrPhone };
-		const existingUser = await User.findOne(query);
+		const existingUser = await User.findOne(query).select('+password')
 		if (!existingUser) {
 			return res
 				.status(400)
 				.json({ message: "No User with this email or Phone...❌" });
 		}
-		const passwordMatches = await bcryptJs.compare(
+		const passwordMatches = bcryptJs.compare(
 			password,
 			existingUser.password
 		);
