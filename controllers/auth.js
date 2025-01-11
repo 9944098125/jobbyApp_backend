@@ -15,7 +15,6 @@ const register = async (req, res, next) => {
 			profilePicture,
 			countryCode,
 			phone,
-			address,
 		} = req.body;
 		const saltRounds = bcryptJs.genSaltSync(12);
 		const hashedPassword = bcryptJs.hashSync(password, saltRounds);
@@ -27,7 +26,6 @@ const register = async (req, res, next) => {
 			profilePicture,
 			countryCode,
 			phone,
-			address,
 		});
 		await newUser.save();
 		sendEmail(email, name, "register", {});
