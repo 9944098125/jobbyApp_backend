@@ -14,11 +14,11 @@ Content-Type: application/json
 }
 
 ######### LOGIN
-POST https://jobbyapp-backend.onrender.com/api/auth/login
+POST https://jobbyappbackend-production.up.railway.app/api/auth/login
 Content-Type: application/json
 
 {
-  "emailOrPhone":"9177629841",
+  "emailOrPhone":"ravi@yopmail.com",
   "password":"Srinivas@8"
 }
 
