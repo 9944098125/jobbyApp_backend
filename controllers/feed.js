@@ -9,7 +9,8 @@ const openAI = new OpenAI({
 
 const create = async (req, res, next) => {
 	try {
-		const { userId, title, description, images } = req.body;
+		const { title, description, images } = req.body;
+		const {userId} = req.params;
 		const user = await User.findOne({ _id: userId });
 		const newFeed = new Feed({
 			owner: {

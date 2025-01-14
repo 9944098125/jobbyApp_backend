@@ -35,10 +35,6 @@ const userSchema = new mongoose.Schema(
 		resume: {
 			type: String,
 		},
-		address: {
-			type: String,
-			required: true,
-		},
 		appliedJobs: [
 			{
 				type: mongoose.Schema.Types.ObjectId,

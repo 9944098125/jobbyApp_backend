@@ -15,7 +15,6 @@ const register = async (req, res, next) => {
 			profilePicture,
 			countryCode,
 			phone,
-			address,
 		} = req.body;
 		const saltRounds = bcryptJs.genSaltSync(12);
 		const hashedPassword = bcryptJs.hashSync(password, saltRounds);
@@ -27,7 +26,6 @@ const register = async (req, res, next) => {
 			profilePicture,
 			countryCode,
 			phone,
-			address,
 		});
 		await newUser.save();
 		sendEmail(email, name, "register", {});
@@ -80,7 +78,7 @@ const login = async (req, res, next) => {
 				.status(400)
 				.json({ message: "No User with this email or Phone...❌" });
 		}
-		const passwordMatches = bcryptJs.compare(password, existingUser.password);
+		const passwordMatches = await bcryptJs.compare(password, existingUser.password);
 		if (!passwordMatches) {
 			return res.status(504).json({ message: "Wrong Password !" });
 		}

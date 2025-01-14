@@ -10,7 +10,7 @@ const { verifyRegisteredUser } = require("../middleware/verify");
 
 const router = express.Router();
 
-router.route("/create").post(verifyRegisteredUser, create);
+router.route("/create/:userId").post(verifyRegisteredUser, create);
 
 router.route("/read").get(read);
 
