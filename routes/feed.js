@@ -14,7 +14,7 @@ router.route("/create/:userId").post(verifyRegisteredUser, create);
 
 router.route("/read").get(read);
 
-router.route("/ai-rewrite").post(verifyRegisteredUser, aiRewrite);
+router.route("/ai-rewrite/:userId").post(verifyRegisteredUser, aiRewrite);
 
 router.route("/update/:feedId/:userId").patch(verifyRegisteredUser, update);
 
