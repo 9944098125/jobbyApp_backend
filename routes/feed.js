@@ -1,5 +1,11 @@
 const express = require("express");
-const { create, read, update, deleteFeed } = require("../controllers/feed");
+const {
+	create,
+	read,
+	update,
+	deleteFeed,
+	aiRewrite,
+} = require("../controllers/feed");
 const { verifyRegisteredUser } = require("../middleware/verify");
 
 const router = express.Router();
@@ -7,6 +13,8 @@ const router = express.Router();
 router.route("/create").post(verifyRegisteredUser, create);
 
 router.route("/read").get(read);
+
+router.route("/ai-rewrite").post(verifyRegisteredUser, aiRewrite);
 
 router.route("/update/:feedId/:userId").patch(verifyRegisteredUser, update);
 

@@ -1,5 +1,11 @@
 const Feed = require("../models/Feed");
 const User = require("../models/User");
+const OpenAI = require("openai");
+
+// Create a configuration with your OpenAI API key
+const openAI = new OpenAI({
+	apiKey: process.env.OPEN_AI_API_KEY,
+});
 
 const create = async (req, res, next) => {
 	try {
@@ -78,4 +84,39 @@ const deleteFeed = async (req, res, next) => {
 	}
 };
 
-module.exports = { create, read, update, deleteFeed };
+const aiRewrite = async (req, res, next) => {
+	try {
+		const { description } = req.body;
+		if (!description) {
+			return res.status(304).json({
+				message: "Prefilled Description not provided !",
+			});
+		}
+		const completion = await openAI.chat.completions.create({
+			model: "gpt-4",
+			messages: [
+				{
+					role: "system",
+					content:
+						"You are an expert in completing the posts in jobs related apps.",
+				},
+				{
+					role: "user",
+					content: `Here is my post's not formatted description, so now please rewrite the same content professionally => ${description}.`,
+				},
+			],
+			max_tokens: 500,
+		});
+
+		const formattedDescription = completion.choices[0].message.content;
+
+		res.status(200).json({
+			message: "Description Re-written.",
+			description: formattedDescription,
+		});
+	} catch (err) {
+		next(err);
+	}
+};
+
+module.exports = { create, read, update, deleteFeed, aiRewrite };
