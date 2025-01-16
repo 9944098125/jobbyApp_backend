@@ -72,7 +72,7 @@ const deleteFeed = async (req, res, next) => {
 	try {
 		const { feedId, userId } = req.params;
 		const feed = await Feed.findOne({ _id: feedId });
-		if (feed?.owner.userId !== userId) {
+		if (feed?.owner.userId.toString() !== userId) {
 			return res.status(404).json({
 				message: "Oh sorry ! It is not your Feed Item !",
 			});
