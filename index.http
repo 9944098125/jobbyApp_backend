@@ -86,3 +86,12 @@ Content-Type: application/json
 {
   "jobTitle":"MERN stack Developer with 2 years experience"
 }
+
+#######
+PATCH http://localhost:5000/api/feed/update/6783f6508cc9c316c57edaa5/6782a2c29835364f1f1ed235
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzgyYTJjMjk4MzUzNjRmMWYxZWQyMzUiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MzcwNDIyNjd9.SPfSLMAXtwuaOQJKYGfzVZv-d6WReygzA4Bsm_GHWyo
+
+{
+  "title":"Updated Title"
+}

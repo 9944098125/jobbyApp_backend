@@ -10,7 +10,7 @@ const openAI = new OpenAI({
 const create = async (req, res, next) => {
 	try {
 		const { title, description, images } = req.body;
-		const {userId} = req.params;
+		const { userId } = req.params;
 		const user = await User.findOne({ _id: userId });
 		const newFeed = new Feed({
 			owner: {
@@ -49,12 +49,13 @@ const update = async (req, res, next) => {
 	try {
 		const { feedId, userId } = req.params;
 		const feed = await Feed.findOne({ _id: feedId });
-		if (feed?.owner.userId !== userId) {
+		if (feed?.owner.userId?.toString() !== userId) {
+			console.log("feed userId", feed?.owner?.userId);
 			return res.status(404).json({
 				message: "Oh sorry ! It is not your Feed Item !",
 			});
 		}
-		await Job.findByIdAndUpdate(
+		await Feed.findByIdAndUpdate(
 			feedId,
 			{ $set: { ...req.body } },
 			{ new: true }
