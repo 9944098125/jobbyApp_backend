@@ -15,7 +15,7 @@ const verifyRegisteredUser = (req, res, next) => {
 				.json({ message: "Unauthorized! Invalid token", err });
 		}
 		req.user = decoded;
-		const { userId } = req.params;
+		const userId = req.params.userId || req.query.userId;
 		if (userId !== req.user.userId) {
 			return res.status(400).json({ message: "Unauthorized" });
 		}
