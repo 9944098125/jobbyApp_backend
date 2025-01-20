@@ -27,7 +27,7 @@ router
 	.route("/jobsAppliedByUser/:userId")
 	.get(verifyRegisteredUser, jobsAppliedByUser);
 
-router.route("/:userId").get(verifyRegisteredUser, getProfile);
+router.route("/getProfile").get(verifyRegisteredUser, getProfile);
 
 router
 	.route("/updatePassword/:userId")
