@@ -179,6 +179,23 @@ const getProfile = async (req, res, next) => {
 	}
 };
 
+const updateProfile = async (req, res, next) => {
+	try {
+		const { userId, name, email, profilePicture, countryCode, phone } =
+			req.body;
+		await User.findByIdAndUpdate(
+			userId,
+			{ $set: { ...req.body } },
+			{ new: true }
+		);
+		res.status(200).json({
+			message: "Updated the User successfully",
+		});
+	} catch (err) {
+		next(err);
+	}
+};
+
 const updatePassword = async (req, res, next) => {
 	try {
 		const { userId } = req.params;
@@ -221,4 +238,5 @@ module.exports = {
 	jobsAppliedByUser,
 	getProfile,
 	updatePassword,
+	updateProfile,
 };

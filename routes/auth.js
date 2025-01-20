@@ -7,6 +7,7 @@ const {
 	jobsAppliedByUser,
 	getProfile,
 	updatePassword,
+	updateProfile,
 } = require("../controllers/auth");
 const { verifyRegisteredUser } = require("../middleware/verify");
 const upload = require("../middleware/cloudinary");
@@ -28,6 +29,8 @@ router
 	.get(verifyRegisteredUser, jobsAppliedByUser);
 
 router.route("/getProfile").get(verifyRegisteredUser, getProfile);
+
+router.route("/update").patch(verifyRegisteredUser, updateProfile);
 
 router
 	.route("/updatePassword/:userId")
