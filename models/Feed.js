@@ -25,6 +25,9 @@ const feedSchema = mongoose.Schema(
 		images: {
 			type: [String],
 		},
+		reference: {
+			type: String,
+		},
 	},
 	{ timestamps: true }
 );
