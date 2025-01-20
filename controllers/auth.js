@@ -181,8 +181,7 @@ const getProfile = async (req, res, next) => {
 
 const updateProfile = async (req, res, next) => {
 	try {
-		const { userId, name, email, profilePicture, countryCode, phone } =
-			req.body;
+		const { userId } = req.body;
 		await User.findByIdAndUpdate(
 			userId,
 			{ $set: { ...req.body } },
