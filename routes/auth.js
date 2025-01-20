@@ -30,7 +30,7 @@ router
 
 router.route("/getProfile").get(verifyRegisteredUser, getProfile);
 
-router.route("/update").patch(verifyRegisteredUser, updateProfile);
+router.route("/update/:userId").patch(verifyRegisteredUser, updateProfile);
 
 router
 	.route("/updatePassword/:userId")
