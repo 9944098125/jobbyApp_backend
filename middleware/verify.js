@@ -17,7 +17,7 @@ const verifyRegisteredUser = (req, res, next) => {
 		req.user = decoded;
 		const userId = req.params.userId || req.query.userId;
 		if (userId !== req.user.userId) {
-			console.log("userId", req.user?.userId);
+			console.log("userId", req.user?.userId, userId);
 			return res.status(400).json({ message: "Unauthorized" });
 		}
 		next();
