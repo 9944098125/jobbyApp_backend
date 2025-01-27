@@ -23,11 +23,17 @@ const createJob = async (req, res, next) => {
 			userId,
 			salary,
 		} = req.body;
+
 		const user = await User.findOne({ _id: userId });
 		if (!user) {
 			return res.status(403).json({
 				message:
 					"This userId does not exist, You cannot create a job without userId 🚫",
+			});
+		}
+		if (!basicQualifications || !skills) {
+			return res.status(403).json({
+				message: "All the fields are required !",
 			});
 		}
 		const newJob = new Job({
