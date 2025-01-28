@@ -15,7 +15,7 @@ const jobSchema = new mongoose.Schema(
 			required: true,
 		},
 		experience: {
-			type: String,
+			type: [String],
 			required: true,
 		},
 		companyName: {
@@ -23,7 +23,7 @@ const jobSchema = new mongoose.Schema(
 			required: true,
 		},
 		basicQualifications: {
-			type: String,
+			type: [String],
 		},
 		appliedUser: {
 			type: [
