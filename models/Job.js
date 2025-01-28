@@ -11,11 +11,11 @@ const jobSchema = new mongoose.Schema(
 			required: true,
 		},
 		skills: {
-			type: [String],
+			type: [Number],
 			required: true,
 		},
 		experience: {
-			type: [String],
+			type: [Number],
 			required: true,
 		},
 		companyName: {
@@ -23,7 +23,7 @@ const jobSchema = new mongoose.Schema(
 			required: true,
 		},
 		basicQualifications: {
-			type: [String],
+			type: [Number],
 		},
 		appliedUser: {
 			type: [
