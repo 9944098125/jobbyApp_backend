@@ -16,16 +16,18 @@ const router = require("express").Router();
 
 router.route("/createJob").post(verifyEmployer, createJob);
 
-router.route("/getJobs/:userId").get(verifyRegisteredUser, getJobs);
+router.route("/getJobs").get(getJobs);
 
 router.route("/update/:jobId").patch(verifyJobOwner, updateJob);
 
 router.route("/delete/:jobId").delete(verifyJobOwner, deleteJob);
 
-router.route("/generate-job-description").post(generateJobDescription);
+router
+	.route("/generate-job-description/:jobId")
+	.post(verifyJobOwner, generateJobDescription);
 
 router
-	.route("/applicants/:employerId")
+	.route("/applicants/:jobId/:employerId")
 	.get(verifyJobOwner, getApplicantsForEmployerJobs);
 
 module.exports = router;
