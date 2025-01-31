@@ -49,7 +49,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmFkZ
 ######### UPDATE JOB BY EMPLOYER
 PATCH https://jobbyappbackend-production.up.railway.app/api/jobs/update/6798fc18ecc9f0fa67b15ea1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzgyYTJjMjk4MzUzNjRmMWYxZWQyMzUiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MzgzNDExMzZ9.Mz7SqCcG3TMaIzAhoKAc-dkQyDu43R8vN3F3gNey-UI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzgyYTJjMjk4MzUzNjRmMWYxZWQyMzUiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MzgzNDE2MTF9.ESzYMaQnPqQdN6gMtpQImRkYCQjnTn1XYcEo9PWnnUA
 
 {
   "role":"Backend Developer 2",

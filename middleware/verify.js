@@ -45,7 +45,7 @@ const verifyJobOwner = (req, res, next) => {
 			}
 			// console.log(job.userId, req.user.userId);
 			if (job?.userId.equals(req.user.userId)) {
-				console.log(job.userId, req.user.userId);
+				console.log("userIds", job.userId, req.user.userId);
 				next();
 			} else {
 				return res.status(400).json({
