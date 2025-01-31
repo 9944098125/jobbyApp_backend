@@ -23,21 +23,22 @@ Content-Type: application/json
 }
 
 ########### CREATE JOB
-POST https://jobbyapp-backend.onrender.com/api/jobs/createJob
+POST https://jobbyappbackend-production.up.railway.app/api/jobs/createJob
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NWNkNWFiYTliZjcyYTA2M2M4OTMiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MjI2NzE1OTR9.AJix3HujFZTwmAeNXo-ffGoveKYPrPRi0q5UaXyv42Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzgyYTJjMjk4MzUzNjRmMWYxZWQyMzUiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MzgzNDI3OTh9.Fq2RVbMxuLvEaZ5ZR2YZ4XqIeShk9A8dW_jl-wsvb-c
 
 {
   "role":"React Developer",
   "location":"Banglore, 66af212d2bbb209f920fea66Karnataka, India.",
-  "skills":["ReactJs", "NodeJs", "MongoDb", "ExpressJs", "MySql"],
-  "experience":"2-5 years",
+  "skills":[1, 2, 3, 4, 5],
+  "experience":[1, 2],
   "companyName":"Infosys Private Limited",
-  "basicQualifications":"B.Tech CSE or similar degree.",
+  "basicQualifications":[1, 2],
   "aboutTheCompany":"Infosys is a web and mobile app development company, dedicated to delivering software solutions that meet business needs. We offer complete end-to-end product development or can integrate with your existing product team.",
   "aboutTheJob":"We are looking for React and Node developers who are interested in experimentation and challenging the convention for our projects.",
-  "userId":"66a65cd5aba9bf72a063c893",
-  "salary":"27,000/- to 45,000/-"
+  "userId":"6782a2c29835364f1f1ed235",
+  "salary":"45,000/-",
+  "companyLogo":""
 }
 
 ######## GET JOBS
@@ -47,7 +48,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmFkZ
 
 
 ######### UPDATE JOB BY EMPLOYER
-PATCH https://jobbyappbackend-production.up.railway.app/api/jobs/update/6798fc18ecc9f0fa67b15ea1
+PATCH http://localhost:5000/api/jobs/update/6798fc18ecc9f0fa67b15ea1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzgyYTJjMjk4MzUzNjRmMWYxZWQyMzUiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MzgzNDE2MTF9.ESzYMaQnPqQdN6gMtpQImRkYCQjnTn1XYcEo9PWnnUA
 
