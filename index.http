@@ -18,7 +18,7 @@ POST https://jobbyappbackend-production.up.railway.app/api/auth/login
 Content-Type: application/json
 
 {
-  "emailOrPhone":"ravi@yopmail.com",
+  "emailOrPhone":"srini@yopmail.com",
   "password":"Srinivas@8"
 }
 
@@ -47,21 +47,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmFkZ
 
 
 ######### UPDATE JOB BY EMPLOYER
-PATCH https://jobbyapp-backend.onrender.com/api/jobs/update/66ade253b140068217faa27b
+PATCH https://jobbyappbackend-production.up.railway.app/api/jobs/update/6798fc18ecc9f0fa67b15ea1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmE2NWNkNWFiYTliZjcyYTA2M2M4OTMiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MjI2NzE1OTR9.AJix3HujFZTwmAeNXo-ffGoveKYPrPRi0q5UaXyv42Y
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzgyYTJjMjk4MzUzNjRmMWYxZWQyMzUiLCJpc0VtcGxveWVyIjp0cnVlLCJpYXQiOjE3MzgzNDExMzZ9.Mz7SqCcG3TMaIzAhoKAc-dkQyDu43R8vN3F3gNey-UI
 
 {
   "role":"Backend Developer 2",
   "location":"Banglore, Karnataka, India.",
-  "skills":["NodeJS", "Python", "Java"],
-  "experience":"2-4 years",
+  "skills":[1, 2, 3],
+  "experience":[1, 2],
   "companyName":"Appening Infotech",
-  "basicQualifications":"B.Tech CSE or similar degree.",
+  "basicQualifications":[1, 2, 5],
   "aboutTheCompany":"Appening is a web and mobile app development company, dedicated to delivering software solutions that meet business needs. We offer complete end-to-end product development or can integrate with your existing product team.",
   "aboutTheJob":"We are looking for NodeJs developers who are interested in experimentation and challenging the convention for our projects.",
   "userId":"66a65cd5aba9bf72a063c893",
-  "salary":"27,000/- to 45,000/-"
+  "salary":"45,000/-",
+  "companyLogo":"https://media.licdn.com/dms/image/v2/D4D0BAQEL49-NBSRzaA/company-logo_200_200/company-logo_200_200/0/1705465857027/appeningxyz_logo?e=2147483647&v=beta&t=r1A9aPm2botlhp86PHcL6G-UItAAj2KerttqGG_hMEY"
 }
 
 ###### APPLYING FOR A JOB
