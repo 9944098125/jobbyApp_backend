@@ -23,8 +23,8 @@ router.route("/update/:jobId").patch(verifyJobOwner, updateJob);
 router.route("/delete/:jobId").delete(verifyJobOwner, deleteJob);
 
 router
-	.route("/generate-job-description/:jobId")
-	.post(verifyJobOwner, generateJobDescription);
+	.route("/generate-job-description")
+	.post(verifyEmployer, generateJobDescription);
 
 router
 	.route("/applicants/:jobId/:employerId")
