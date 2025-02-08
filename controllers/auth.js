@@ -49,7 +49,7 @@ const uploadResume = async (req, res, next) => {
 		}
 
 		// console.log(req.file);
-		user.resume = req.file.path;
+		user.resume = req.file;
 		await user.save();
 
 		sendEmail(user?.email, user?.name.split(" ")[0], "uploaded", {});
