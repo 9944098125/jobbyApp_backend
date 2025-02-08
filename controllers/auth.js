@@ -51,6 +51,7 @@ const uploadResume = async (req, res, next) => {
 		// console.log(req.file);
 		user.resume = req.file;
 		await user.save();
+		console.log("resume", req.file, user.resume);
 
 		sendEmail(user?.email, user?.name.split(" ")[0], "uploaded", {});
 		res.status(200).json({
