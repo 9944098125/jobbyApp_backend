@@ -1,14 +1,14 @@
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
-const cloudinary = require("../helpers/cloudinaryConfig");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../helpers/cloudinaryConfig"); // Ensure correct Cloudinary import
 
 const storage = new CloudinaryStorage({
 	cloudinary: cloudinary,
 	params: {
 		folder: "resumes",
-		resource_type: "raw",
+		resource_type: "raw", // Ensures PDFs and Docs are uploaded
 		allowed_formats: ["pdf", "doc", "docx"],
-		public_id: (req, file) => `${Date.now()}-${file.originalname}`,
+		public_id: (req, file) => `resume_${Date.now()}_${file.originalname}`,
 	},
 });
 

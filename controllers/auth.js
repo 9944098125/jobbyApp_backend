@@ -63,12 +63,8 @@ const uploadResume = async (req, res, next) => {
 		user.resume = req.file.path;
 		await user.save();
 
-		sendEmail(user.email, user.name.split(" ")[0], "uploaded", {});
-
 		res.status(200).json({
-			message: `You have uploaded your resume successfully, ${
-				user.name.split(" ")[0]
-			}`,
+			message: `Resume uploaded successfully, ${user.name.split(" ")[0]}`,
 			resume: user.resume,
 		});
 	} catch (err) {
