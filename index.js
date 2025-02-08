@@ -11,8 +11,8 @@ const feedsRoute = require("./routes/feed");
 const app = express();
 // some middleware functionalities
 app.use(cors());
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ limit: "100mb" }));
+app.use(bodyParser.urlencoded({ limit: "100md", extended: true }));
 app.use(bodyParser.json());
 
 // routes here
