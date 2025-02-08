@@ -41,11 +41,8 @@ const register = async (req, res, next) => {
 
 const uploadResume = async (req, res, next) => {
 	try {
-		console.log("File Data:", req.file); // Debugging: Check uploaded file
-		console.log("Request Params:", req.params); // Debugging: Check userId
-		console.log("Request Body:", req.body); // Debugging: Check form data
-
 		const { userId } = req.params;
+
 		if (!userId) {
 			return res.status(400).json({ message: "User ID is required" });
 		}
@@ -54,13 +51,12 @@ const uploadResume = async (req, res, next) => {
 		if (!user) {
 			return res.status(404).json({ message: "User not found" });
 		}
-
-		if (!req.file) {
-			return res.status(400).json({ message: "No file uploaded" });
+		if (!req.body.resume) {
+			return res.status(403).json({ message: "Please upload your Resume !" });
 		}
 
 		// Save resume URL from Cloudinary
-		user.resume = req.file.path;
+		user.resume = req.body.resume;
 		await user.save();
 
 		res.status(200).json({

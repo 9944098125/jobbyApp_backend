@@ -16,9 +16,7 @@ router.route("/register").post(register);
 
 router.route("/login").post(login);
 
-router
-	.route("/upload-resume/:userId")
-	.post(verifyRegisteredUser, upload.single("resume"), uploadResume);
+router.route("/upload-resume/:userId").post(verifyRegisteredUser, uploadResume);
 
 router
 	.route("/apply/:jobId/:userId")
