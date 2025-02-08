@@ -13,7 +13,6 @@ const app = express();
 app.use(cors());
 app.use(express.json({ limit: "100mb" }));
 app.use(bodyParser.urlencoded({ limit: "100md", extended: true }));
-app.use(bodyParser.json());
 
 // routes here
 app.use("/api/auth", authRoute);
