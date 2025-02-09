@@ -148,16 +148,27 @@ const jobsAppliedByUser = async (req, res, next) => {
 		const { userId } = req.params;
 
 		if (!userId) {
-			res.status(403).json({
+			return res.status(403).json({
 				message: "User ID must exist for fetching jobs applied by a user",
 			});
 		}
 
-		const jobs = await Job.find({ userId: userId });
-		const user = await User.findOne({ _id: userId });
+		// Fetch the user and their applied job IDs
+		const user = await User.findById(userId);
+
+		if (!user || !user.appliedJobs || user.appliedJobs.length === 0) {
+			return res.status(404).json({
+				message: `No jobs found for the user ${user?.name || "Unknown"}`,
+				jobs: [],
+			});
+		}
+
+		// Fetch only jobs that match the appliedJobs array using `$in`
+		const jobs = await Job.find({ _id: { $in: user.appliedJobs } });
+
 		res.status(200).json({
-			message: `Fetched jobs applied by ${user?.name}`,
-			jobs: jobs,
+			message: `Fetched jobs applied by ${user.name}`,
+			jobs,
 		});
 	} catch (err) {
 		next(err);

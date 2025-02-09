@@ -18,7 +18,7 @@ POST https://jobbyappbackend-production.up.railway.app/api/auth/login
 Content-Type: application/json
 
 {
-  "emailOrPhone":"srini@yopmail.com",
+  "emailOrPhone":"ravi@yopmail.com",
   "password":"Srinivas@8"
 }
 
@@ -42,9 +42,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzgyY
 }
 
 ######## GET JOBS
-GET https://jobbyapp-backend.onrender.com/api/jobs/getJobs/66adf005dae0ac2bdd914701
+GET https://jobbyapp-backend.onrender.com/api/jobs/getJobs/67822945af3e17dde232ce9c
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NmFkZjAwNWRhZTBhYzJiZGQ5MTQ3MDEiLCJpc0VtcGxveWVyIjpmYWxzZSwiaWF0IjoxNzIyNjgxNDYyfQ.Fz32mk0mP_2iFRaJgFrQDeX1iIIN8aGfhospiM4rMsc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzgyMjk0NWFmM2UxN2RkZTIzMmNlOWMiLCJpc0VtcGxveWVyIjpmYWxzZSwiaWF0IjoxNzM5MDg5NTYyfQ.IXDDFTBHzOmouqBZEHtqfMe9x-mygvzMnRfejzMnx-A
 
 
 ######### UPDATE JOB BY EMPLOYER
@@ -97,3 +97,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzgyY
 {
   "title":"Updated Title"
 }
+
+####### get jobs applied by a user
+GET http://localhost:5000/api/auth/jobsAppliedByUser/67822945af3e17dde232ce9c
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzgyMjk0NWFmM2UxN2RkZTIzMmNlOWMiLCJpc0VtcGxveWVyIjpmYWxzZSwiaWF0IjoxNzM5MDg5NTYyfQ.IXDDFTBHzOmouqBZEHtqfMe9x-mygvzMnRfejzMnx-A
