@@ -27,7 +27,7 @@ router
 	.post(verifyEmployer, generateJobDescription);
 
 router
-	.route("/applicants/:jobId/:employerId")
+	.route("/applicants/:employerId")
 	.get(verifyJobOwner, getApplicantsForEmployerJobs);
 
 module.exports = router;
