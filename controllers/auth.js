@@ -16,6 +16,18 @@ const register = async (req, res, next) => {
 			countryCode,
 			phone,
 		} = req.body;
+		const existingUser = User.findOne({ email: email });
+		if (existingUser) {
+			return res.status(403).json({
+				message: "A User already exists with this email.",
+			});
+		}
+		const existingPhone = User.findOne({ phone: phone });
+		if (existingPhone) {
+			return res
+				.status(403)
+				.json({ message: "Come On ! Do not use the same phone numbers !" });
+		}
 		const saltRounds = bcryptJs.genSaltSync(12);
 		const hashedPassword = bcryptJs.hashSync(password, saltRounds);
 		const newUser = new User({
