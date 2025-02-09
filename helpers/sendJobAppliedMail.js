@@ -25,7 +25,7 @@ async function sendJobAppliedMailToEmployer(employerEmail, employerName, user) {
 				<ul>
 					<li><strong>Name:</strong> ${user?.name}</li>
 					<li><strong>Email:</strong> ${user?.email}</li>
-					<li><strong>Phone:</strong> ${user?.phone}</li>
+					<li><strong>Phone:</strong> ${user?.countryCode}+${user?.phone}</li>
 				</ul>
 				<p>You can <a href="${
 					user?.resume
