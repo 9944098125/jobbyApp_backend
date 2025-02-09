@@ -176,10 +176,13 @@ const getApplicantsForEmployerJobs = async (req, res, next) => {
 
 		// Extract job information and applicants
 		const jobApplicants = jobs.map((job) => ({
-			jobId: job._id,
-			role: job.role,
-			location: job.location,
-			applicants: job.appliedUser, // Users who applied for this job
+			jobId: job?._id,
+			companyName: job?.companyName,
+			companyLogo: job?.companyLogo,
+			role: job?.role,
+			location: job?.location,
+			skills: job?.skills,
+			applicants: job.appliedUser,
 		}));
 
 		res.status(200).json({
