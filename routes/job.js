@@ -28,6 +28,6 @@ router
 
 router
 	.route("/applicants/:employerId")
-	.get(verifyJobOwner, getApplicantsForEmployerJobs);
+	.get(verifyEmployer, getApplicantsForEmployerJobs);
 
 module.exports = router;
