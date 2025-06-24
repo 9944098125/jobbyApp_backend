@@ -16,13 +16,13 @@ const register = async (req, res, next) => {
 			countryCode,
 			phone,
 		} = req.body;
-		const existingUser = User.findOne({ email: email });
+		const existingUser = await User.findOne({ email: email });
 		if (existingUser) {
 			return res.status(403).json({
 				message: "A User already exists with this email.",
 			});
 		}
-		const existingPhone = User.findOne({ phone: phone });
+		const existingPhone = await User.findOne({ phone: phone });
 		if (existingPhone) {
 			return res
 				.status(403)
