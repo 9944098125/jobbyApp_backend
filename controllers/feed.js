@@ -100,22 +100,28 @@ const aiRewrite = async (req, res, next) => {
     }
 
     const apiResponse = await openai.chat.completions.create({
-      model: "meta-llama/llama-3.1-8b-instruct", // SAFE model
+      model: "meta-llama/llama-3.1-8b-instruct",
       messages: [
         {
           role: "user",
-          content: `Please rewrite this post description:\n\n${description}`
+          content: `Rewrite the following post description.
+Return ONLY the rewritten text.
+Do NOT add explanations, options, labels, or quotes.
+
+Text:
+${description}`
         }
       ],
-      max_tokens: 300
+      max_tokens: 300,
+      temperature: 0.4
     });
 
-    const rewrittenText =
-      apiResponse.choices?.[0]?.message?.content;
+    let rewrittenText =
+      apiResponse.choices?.[0]?.message?.content || "";
 
-    if (!rewrittenText) {
-      return res.status(500).json({ error: "AI response empty" });
-    }
+    rewrittenText = rewrittenText
+      .replace(/^["'`]+|["'`]+$/g, "")
+      .trim();
 
     return res.status(200).json({
       description: rewrittenText
@@ -124,6 +130,7 @@ const aiRewrite = async (req, res, next) => {
     next(error);
   }
 };
+
 
 
 module.exports = { create, read, update, deleteFeed, aiRewrite };
