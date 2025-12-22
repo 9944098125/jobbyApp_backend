@@ -2,9 +2,9 @@ const Feed = require("../models/Feed");
 const User = require("../models/User");
 const OpenAI = require("openai");
 
-// Create a configuration with your OpenAI API key
-const openAI = new OpenAI({
-	apiKey: process.env.OPEN_AI_API_KEY,
+const openAi = new OpenAI({
+  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: process.env.OPEN_AI_API_KEY,
 });
 
 const create = async (req, res, next) => {
@@ -90,35 +90,25 @@ const deleteFeed = async (req, res, next) => {
 const aiRewrite = async (req, res, next) => {
 	try {
 		const { description } = req.body;
+
 		if (!description) {
-			return res.status(304).json({
-				message: "Prefilled Description not provided !",
-			});
+			return res.status(400).json({ error: "Description is required" });
 		}
-		const completion = await openAI.chat.completions.create({
-			model: "gpt-4",
-			messages: [
-				{
-					role: "system",
-					content:
-						"You are an expert in completing the posts in jobs related apps.",
-				},
-				{
-					role: "user",
-					content: `Here is my post's not formatted description, so now please rewrite the same content professionally => ${description}.`,
-				},
-			],
-			max_tokens: 500,
-		});
+		const apiResponse = await openAI.chat.completions.create({
+            model: 'openai/gpt-oss-120b:free',
+            messages: [
+        {
+        role: 'user',
+        content: `Please reweite this post description - ${description}`,
+    },
+  ],
+  reasoning: { enabled: true }
+});
 
-		const formattedDescription = completion.choices[0].message.content;
-
-		res.status(200).json({
-			message: "Description Re-written.",
-			description: formattedDescription,
-		});
-	} catch (err) {
-		next(err);
+const response = apiResponse.choices[0].message;
+		return res.status(200).json({ jobDescription: response });
+	} catch (error) {
+		next(error);
 	}
 };
 
