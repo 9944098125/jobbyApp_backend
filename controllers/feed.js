@@ -6,8 +6,8 @@ const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_API_KEY,
   baseURL: "https://openrouter.ai/api/v1",
   defaultHeaders: {
-    "HTTP-Referer": "https://yourapp.com",
-    "X-Title": "My Chat App"
+    "HTTP-Referer": "http://localhost",   // REQUIRED
+    "X-Title": "My MERN App"               // REQUIRED
   }
 });
 
@@ -92,28 +92,38 @@ const deleteFeed = async (req, res, next) => {
 };
 
 const aiRewrite = async (req, res, next) => {
-	try {
-		const { description } = req.body;
+  try {
+    const { description } = req.body;
 
-		if (!description) {
-			return res.status(400).json({ error: "Description is required" });
-		}
-		const apiResponse = await openai.chat.completions.create({
-            model: 'openai/gpt-oss-120b:free',
-            messages: [
+    if (!description) {
+      return res.status(400).json({ error: "Description is required" });
+    }
+
+    const apiResponse = await openai.chat.completions.create({
+      model: "meta-llama/llama-3.1-8b-instruct", // SAFE model
+      messages: [
         {
-        role: 'user',
-        content: `Please reweite this post description - ${description}`,
-    },
-  ],
-  reasoning: { enabled: true }
-});
+          role: "user",
+          content: `Please rewrite this post description:\n\n${description}`
+        }
+      ],
+      max_tokens: 300
+    });
 
-const response = apiResponse.choices[0].message;
-		return res.status(200).json({ description: response });
-	} catch (error) {
-		next(error);
-	}
+    const rewrittenText =
+      apiResponse.choices?.[0]?.message?.content;
+
+    if (!rewrittenText) {
+      return res.status(500).json({ error: "AI response empty" });
+    }
+
+    return res.status(200).json({
+      description: rewrittenText
+    });
+  } catch (error) {
+    next(error);
+  }
 };
+
 
 module.exports = { create, read, update, deleteFeed, aiRewrite };
