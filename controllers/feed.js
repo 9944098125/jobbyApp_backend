@@ -106,7 +106,7 @@ const aiRewrite = async (req, res, next) => {
 });
 
 const response = apiResponse.choices[0].message;
-		return res.status(200).json({ jobDescription: response });
+		return res.status(200).json({ description: response });
 	} catch (error) {
 		next(error);
 	}
