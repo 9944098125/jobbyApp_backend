@@ -4,9 +4,13 @@ const Job = require("../models/Job");
 const User = require("../models/User");
 const OpenAI = require("openai");
 
-const openAi = new OpenAI({
-  baseURL: 'https://openrouter.ai/api/v1',
-  apiKey: process.env.OPEN_AI_API_KEY
+const openai = new OpenAI({
+  apiKey: process.env.OPEN_AI_API_KEY,
+  baseURL: "https://openrouter.ai/api/v1",
+  defaultHeaders: {
+    "HTTP-Referer": "http://localhost",   // REQUIRED
+    "X-Title": "My MERN App"               // REQUIRED
+  }
 });
 
 const createJob = async (req, res, next) => {
@@ -135,29 +139,49 @@ const deleteJob = async (req, res, next) => {
 };
 
 const generateJobDescription = async (req, res, next) => {
-	try {
-		const { jobTitle } = req.body;
+  try {
+    const { jobTitle } = req.body;
 
-		if (!jobTitle) {
-			return res.status(400).json({ error: "Job title is required" });
-		}
-		const apiResponse = await openAi.chat.completions.create({
-            model: 'openai/gpt-oss-120b:free',
-            messages: [
+    if (!jobTitle) {
+      return res.status(400).json({ error: "Job title is required" });
+    }
+
+    const apiResponse = await openai.chat.completions.create({
+      model: "meta-llama/llama-3.1-8b-instruct", // safe free model
+      messages: [
         {
-        role: 'user',
-        content: `Please generate an efficient job description on this job title - ${jobTitle}`,
-    },
-  ],
-  reasoning: { enabled: true }
-});
+          role: "system",
+          content:
+            "You are an HR assistant. Generate clear, professional job descriptions. Output ONLY the job description text. No headings, no quotes, no explanations."
+        },
+        {
+          role: "user",
+          content: `Generate a concise and effective job description for the following role:\n${jobTitle}`
+        }
+      ],
+      max_tokens: 500,
+      temperature: 0.5
+    });
 
-const response = apiResponse.choices[0].message;
-		return res.status(200).json({ jobDescription: response });
-	} catch (error) {
-		next(error);
-	}
+    let jobDescription =
+      apiResponse.choices?.[0]?.message?.content || "";
+
+    jobDescription = jobDescription
+      .replace(/^["'`]+|["'`]+$/g, "")
+      .trim();
+
+    if (!jobDescription) {
+      return res.status(500).json({ error: "AI failed to generate job description" });
+    }
+
+    return res.status(200).json({
+      jobDescription
+    });
+  } catch (error) {
+    next(error);
+  }
 };
+
 
 const getApplicantsForEmployerJobs = async (req, res, next) => {
 	try {
