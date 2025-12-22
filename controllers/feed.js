@@ -94,7 +94,7 @@ const aiRewrite = async (req, res, next) => {
 		if (!description) {
 			return res.status(400).json({ error: "Description is required" });
 		}
-		const apiResponse = await openAI.chat.completions.create({
+		const apiResponse = await openAi.chat.completions.create({
             model: 'openai/gpt-oss-120b:free',
             messages: [
         {
