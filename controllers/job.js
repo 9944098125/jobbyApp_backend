@@ -141,24 +141,19 @@ const generateJobDescription = async (req, res, next) => {
 		if (!jobTitle) {
 			return res.status(400).json({ error: "Job title is required" });
 		}
-		const completion = await openAI.chat.completions.create({
-			model: "gpt-4",
-			messages: [
-				{
-					role: "system",
-					content: "You are an expert in writing job descriptions.",
-				},
-				{
-					role: "user",
-					content: `Generate a job description for a ${jobTitle} in two paragraphs.`,
-				},
-			],
-			max_tokens: 500,
-		});
+		const apiResponse = await openAI.chat.completions.create({
+            model: 'openai/gpt-oss-120b:free',
+            messages: [
+        {
+        role: 'user',
+        content: `Please generate an efficient job description on this job title - ${jobTitle}`,
+    },
+  ],
+  reasoning: { enabled: true }
+});
 
-		const jobDescription = completion.choices[0].message.content;
-
-		return res.status(200).json({ jobDescription });
+const response = apiResponse.choices[0].message;
+		return res.status(200).json({ jobDescription;response });
 	} catch (error) {
 		next(error);
 	}
