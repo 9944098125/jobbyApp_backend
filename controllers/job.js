@@ -4,9 +4,9 @@ const Job = require("../models/Job");
 const User = require("../models/User");
 const OpenAI = require("openai");
 
-// Create a configuration with your OpenAI API key
-const openAI = new OpenAI({
-	apiKey: process.env.OPEN_AI_API_KEY,
+const openAi = new OpenAI({
+  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: process.env.OPEN_AI_API_KEY
 });
 
 const createJob = async (req, res, next) => {
@@ -141,7 +141,7 @@ const generateJobDescription = async (req, res, next) => {
 		if (!jobTitle) {
 			return res.status(400).json({ error: "Job title is required" });
 		}
-		const apiResponse = await openAI.chat.completions.create({
+		const apiResponse = await openAi.chat.completions.create({
             model: 'openai/gpt-oss-120b:free',
             messages: [
         {
@@ -153,7 +153,7 @@ const generateJobDescription = async (req, res, next) => {
 });
 
 const response = apiResponse.choices[0].message;
-		return res.status(200).json({ jobDescription;response });
+		return res.status(200).json({ jobDescription: response });
 	} catch (error) {
 		next(error);
 	}
