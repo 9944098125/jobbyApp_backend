@@ -2,9 +2,13 @@ const Feed = require("../models/Feed");
 const User = require("../models/User");
 const OpenAI = require("openai");
 
-const openAi = new OpenAI({
-  baseURL: 'https://openrouter.ai/api/v1',
+const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_API_KEY,
+  baseURL: "https://openrouter.ai/api/v1",
+  defaultHeaders: {
+    "HTTP-Referer": "https://yourapp.com",
+    "X-Title": "My Chat App"
+  }
 });
 
 const create = async (req, res, next) => {
@@ -94,7 +98,7 @@ const aiRewrite = async (req, res, next) => {
 		if (!description) {
 			return res.status(400).json({ error: "Description is required" });
 		}
-		const apiResponse = await openAi.chat.completions.create({
+		const apiResponse = await openai.chat.completions.create({
             model: 'openai/gpt-oss-120b:free',
             messages: [
         {
