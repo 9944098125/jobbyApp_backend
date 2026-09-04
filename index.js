@@ -55,7 +55,12 @@ const app = express();
 // ✅ Fix: Use `express.json()` **only** for routes that need JSON
 app.use(
 	cors({
-		origin: "https://jobby-app-frontend-pi.vercel.app",
+		origin: [
+			"https://jobby-app-frontend-pi.vercel.app",
+			"http://localhost:3000",
+			"http://localhost:5173",
+			"http://localhost:3001"
+		],
 		credentials: true,
 		methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
 		allowedHeaders: ["Content-Type", "Authorization"],
