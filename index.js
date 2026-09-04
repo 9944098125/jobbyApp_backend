@@ -59,13 +59,14 @@ app.use(
 			"https://jobby-app-frontend-pi.vercel.app",
 			"http://localhost:3000",
 			"http://localhost:5173",
-			"http://localhost:3001"
+			"http://localhost:3001",
 		],
 		credentials: true,
 		methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
 		allowedHeaders: ["Content-Type", "Authorization"],
 	}),
 );
+// added cors config
 app.use("/api", express.json({ limit: "100mb" }));
 app.use("/api", bodyParser.urlencoded({ limit: "100mb", extended: true }));
 
