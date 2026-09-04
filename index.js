@@ -53,7 +53,15 @@ const feedsRoute = require("./routes/feed");
 const app = express();
 
 // ✅ Fix: Use `express.json()` **only** for routes that need JSON
-app.use(cors());
+app.use(
+	cors({
+		origin: [
+			"https://jobby-app-frontend-pi.vercel.app",
+			"http://localhost:3000",
+		],
+		credentials: true,
+	}),
+);
 // added cors config
 app.use("/api", express.json({ limit: "100mb" }));
 app.use("/api", bodyParser.urlencoded({ limit: "100mb", extended: true }));
